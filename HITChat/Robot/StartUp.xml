@@ -1,0 +1,36 @@
+<aiml version="1.0.1" encoding="UTF-8">
+    <!-- std-startup.xml -->
+
+    <!-- <category> 作为AIML的原子级单元 -->
+    <category>
+
+        <!-- 匹配用户输入的模式 -->
+        <!-- 如果用户输入 "LOAD AIML B" -->
+        <pattern>LOAD AIML B</pattern>
+
+        <!-- <Template> 用来响应模式 -->
+        <!-- <learn>是一个aiml文件 -->
+        <template>
+			<learn>basic_chat.aiml</learn>
+			<learn>BuyTicket.aiml</learn>
+			<learn>2.aiml</learn>
+			<learn>bye.aiml</learn>
+			<learn>cnNameGame.aiml</learn>
+			<learn>forget.aiml</learn>
+			<learn>name.aiml</learn>
+			<learn>other.aiml</learn>
+			<learn>std_1.aiml</learn>
+			<learn>std_3.aiml</learn>
+			<learn>test4.aiml</learn>
+			<learn>test.aiml</learn>
+			<learn>test1.aiml</learn>
+			<learn>test3.aiml</learn>
+			<learn>testCNAIML.aiml</learn>
+			<learn>txt1.aiml</learn>
+			<learn>User.aiml</learn>
+			<learn>why.aiml</learn>
+			<learn>twowordpro.aiml</learn>
+			<learn>samemeaning.aiml</learn>
+        </template>
+    </category>
+</aiml>

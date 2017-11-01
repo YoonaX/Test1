@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<title>HeadPortrait</title>
+    <style type="text/css">
+    .size {
+        width:180px;
+        height:120px;
+        margin-left:8.5%;
+        margin-bottom:10px;
+    }
+    .size1 {
+        margin-left:22%;
+    }
+    .size2 {
+        width:180px;
+        height:120px;
+        margin-left:22%;
+        margin-bottom:10px;
+    }
+    </style>
+</head>
+<body>
+
+<ul class="nav nav-pills nav-stacked">
+    <li class="active" style="font-size:20px; font-family:'楷体'"><a ><span class="glyphicon glyphicon-align-justify"></span>个人中心</a></li>
+</ul>
+
+
+<div class="line">
+ <div class="col-sm-9 col-md-3">
+    <div class="thumbnail">
+      <div class="caption">
+
+<div class="list-group">
+
+    <img src="{{ url_for('static', filename='images/'+ usermsg.telephone +'.png')}}" alt="...图像加载失败" class="size2"><br>
+    <label class="size1" style="font-size:16px; font-family:'楷体'">用户名：{{usermsg.username}}</label><br>
+    <label class="size1" style="font-size:16px; font-family:'楷体'">座右铭：{{usermsg.motto}}</label><br><br>
+
+     <!--<a href="BasicMessage.html" class="list-group-item">基本资料</a>-->
+     <!--<a href="Education.html" class="list-group-item">教育背景</a>-->
+     <!--<a href="Work.html" class="list-group-item">工作信息</a>-->
+     <!--<a href="HeadPortrait.html" class="list-group-item active">头像设置</a>-->
+
+<ul class="nav nav-pills nav-stacked">
+    <a href="{{ url_for('basicmessage') }}" class="list-group-item"><span class="glyphicon glyphicon-send"></span>编辑基本资料</a>
+    <a href="{{ url_for('personalitymessage') }}" class="list-group-item"><span class="glyphicon glyphicon-send"></span>编辑个性资料</a>
+    <a href="{{ url_for('headportrait') }}" class="list-group-item active"><span class="glyphicon glyphicon-send"></span>更改头像</a>
+</ul>
+    <br><br><br>
+<ul class="nav nav-pills nav-stacked">
+    <a href="{{ url_for('showbasicmessage') }}" class="list-group-item"><span class="glyphicon glyphicon-send"></span>返回个人中心</a>
+</ul>
+
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+ <div class="col-sm-9 col-md-8" >
+    <div class="thumbnail">
+      <div class="caption">
+
+ <div class="list-group">
+
+ <ul class="nav nav-pills nav-stacked">
+ <li ><a class="list-group-item"><span class="glyphicon glyphicon-send"></span>更改头像</a></li>
+ </ul>
+
+<form action="{{url_for('uploadpic')}}" enctype="multipart/form-data" method="POST" >
+
+<br>
+<br>
+	  <h2 class="col-md-offset-1" style="font-size:20px; font-family:'楷体'; font-weight:bold">选择本地图片</h2>
+      <input type="file" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*" class="col-md-offset-1" style="font-size:16px; font-family:'楷体'" name="picture"/>
+      <h2 class="col-md-offset-1" style="font-size:20px; font-family:'楷体'; font-weight:bold">图片预览</h2>
+      <img id="xmTanImg" class="size"/><br>
+      <input type="submit" value="保存" class="btn btn-primary col-md-offset-1"/>
+</form>
+	<br>
+	<br>
+	<br>
+
+			<script type="text/javascript">
+            //判断浏览器是否支持FileReader接口
+            if (typeof FileReader == 'undefined') {
+                document.getElementById("xmTanDiv").InnerHTML = "<h1>当前浏览器不支持FileReader接口</h1>";
+                //使选择控件不可操作
+                document.getElementById("xdaTanFileImg").setAttribute("disabled", "disabled");
+            }
+
+            //选择图片，马上预览
+            function xmTanUploadImg(obj) {
+                var file = obj.files[0];
+
+                console.log(obj);console.log(file);
+                console.log("file.size = " + file.size);  //file.size 单位为byte
+
+                var reader = new FileReader();
+
+                //读取文件过程方法
+                reader.onloadstart = function (e) {
+                    console.log("开始读取....");
+                }
+                reader.onprogress = function (e) {
+                    console.log("正在读取中....");
+                }
+                reader.onabort = function (e) {
+                    console.log("中断读取....");
+                }
+                reader.onerror = function (e) {
+                    console.log("读取异常....");
+                }
+                reader.onload = function (e) {
+                    console.log("成功读取....");
+
+                    var img = document.getElementById("xmTanImg");
+                    img.src = e.target.result;
+                    //或者 img.src = this.result;  //e.target == this
+                }
+
+                reader.readAsDataURL(file)
+            }
+        	</script>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
